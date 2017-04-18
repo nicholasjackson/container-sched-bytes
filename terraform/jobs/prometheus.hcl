@@ -46,7 +46,10 @@ job "prometheus" {
 
       service {
         name = "prometheus"
-        tags = ["prometheus"]
+
+        tags = [
+          "urlprefix-/prometheus strip=/prometheus",
+        ]
       }
     }
   }
