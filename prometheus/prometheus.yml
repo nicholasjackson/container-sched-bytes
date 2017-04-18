@@ -6,10 +6,10 @@ scrape_configs:
 # The job name assigned to scraped metrics by default.
 - job_name: statsd
   consul_sd_configs:
-    consul_sd_config:
-      server: localhost:8500
-      services:
-        - "statsd"
+  -
+    server: nomad-consul-client-770400531.eu-west-1.elb.amazonaws.com:8500
+    services:
+    - "statsd"
   
 - job_name: 'prometheus'
   static_configs:
