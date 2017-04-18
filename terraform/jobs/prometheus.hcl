@@ -46,10 +46,19 @@ job "prometheus" {
 
       service {
         name = "prometheus"
+        port = "http"
 
         tags = [
-          "urlprefix-/prometheus strip=/prometheus",
+          "urlprefix-/",
         ]
+
+        check {
+          name     = "alive"
+          type     = "http"
+          interval = "10s"
+          timeout  = "2s"
+          path     = "/status"
+        }
       }
     }
   }

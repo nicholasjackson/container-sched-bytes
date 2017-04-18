@@ -27,7 +27,7 @@ job "statsd" {
 
         port_map {
           http  = 9102
-          stats = 8125
+          stats = 9125
         }
       }
 
@@ -43,14 +43,24 @@ job "statsd" {
           }
 
           port "stats" {
-            static = "8125"
+            static = "9125"
           }
         }
       }
 
       service {
         name = "statsd"
-        tags = ["statsd"]
+        port = "http"
+
+        tags = ["statsd:9102"]
+
+        check {
+          name     = "alive"
+          type     = "http"
+          interval = "10s"
+          timeout  = "2s"
+          path     = "/"
+        }
       }
     }
   }
